@@ -3,95 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Validador del Oficio - Semana 2</title>
-    <!-- Tailwind CSS para un diseño impecable de nivel profesional -->
-    <script src="https://tailwindcss.com"></script>
+    <title>El Validador del Oficio</title>
     <style>
-        /* Tipografía grande y accesible para usuarios mayores */
-        body { font-size: 1.25rem; }
+        /* Estilos directos asegurados sin depender de librerías externas */
+        body {
+            font-family: sans-serif;
+            background-color: #064e3b;
+            color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 90vh;
+            font-size: 1.25rem;
+        }
+        .contenedor {
+            max-width: 450px;
+            margin: 40px auto;
+            background-color: rgba(6, 78, 59, 0.6);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #047857;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .boton {
+            width: 100%;
+            background-color: #10b981;
+            color: #064e3b;
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .boton:hover { background-color: #34d399; }
+        .caja-texto {
+            width: 100%;
+            background-color: #022c22;
+            border: 1px solid #047857;
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            resize: none;
+        }
+        .bloque-json {
+            background-color: #022c22;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #047857;
+            color: #6ee7b7;
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        .oculto { display: none !important; }
+        header, footer { text-align: center; font-family: monospace; }
+        h1 { color: #34d399; margin: 0; font-size: 2rem; }
     </style>
 </head>
-<body class="bg-emerald-950 text-slate-100 min-h-screen flex flex-col justify-between p-4">
+<body>
 
-    <!-- CABECERA -->
-    <header class="text-center py-4 border-b border-emerald-800">
-        <h1 class="text-3xl font-extrabold text-emerald-400 tracking-tight">El Validador del Oficio</h1>
-        <p class="text-sm text-emerald-300 mt-1 font-mono uppercase tracking-wider">Semana 2: Evidencia del Candidato</p>
+    <header>
+        <h1>El Validador del Oficio</h1>
+        <p style="color: #6ee7b7; margin-top: 5px;">SEMANA 2: EVIDENCIA DEL CANDIDATO</p>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow flex items-center justify-center my-6">
-        <div class="w-full max-w-md bg-emerald-900/40 p-6 rounded-2xl border border-emerald-800 shadow-xl backdrop-blur-sm">
-            
-            <!-- VISTA 1: ACCESO DIRECTO (SIN CONTRASENAS) -->
-            <div id="vista-login" class="space-y-6">
-                <div class="text-center space-y-2">
-                    <span class="text-4xl">👋</span>
-                    <h2 class="text-2xl font-bold">¡Bienvenida, Doña Mari!</h2>
-                    <p class="text-slate-300 text-base">Para proteger sus datos y evitar contraseñas difíciles, use el acceso seguro de un solo clic.</p>
-                </div>
-                
-                <button onclick="entrarModoDemo()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-extrabold py-4 px-6 rounded-xl transition-all text-xl shadow-lg shadow-emerald-500/10 active:scale-[0.98]">
-                    🟢 Entrar Directo (Modo Demo)
-                </button>
-                
-                <p class="text-xs text-center text-emerald-400/70 font-mono">Protección de Datos: Autenticación Simplificada Activa</p>
-            </div>
+    <main class="contenedor">
+        <!-- PANTALLA 1: BIENVENIDA -->
+        <div id="vista-login" style="text-align: center;">
+            <p style="font-size: 3rem; margin: 0;">👋</p>
+            <h2 style="font-size: 1.75rem; margin: 10px 0;">¡Bienvenida, Doña Mari!</h2>
+            <p style="color: #cbd5e1; font-size: 1.1rem;">Para proteger sus datos y evitar contraseñas difíciles, use el acceso seguro de un solo clic.</p>
+            <button onclick="entrarModoDemo()" class="boton">🟢 Entrar Directo (Modo Demo)</button>
+        </div>
 
-            <!-- VISTA 2: FORMULARIO NARRATIVO -->
-            <div id="vista-formulario" class="hidden space-y-6">
-                <div class="space-y-1">
-                    <h2 class="text-2xl font-bold text-emerald-400">Cuéntenos de su trabajo</h2>
-                    <p class="text-slate-300 text-sm">Escriba de forma sencilla qué vende, cuánto tiempo lleva y cómo es un día normal en su negocio.</p>
-                </div>
+        <!-- PANTALLA 2: FORMULARIO -->
+        <div id="vista-formulario" class="oculto">
+            <h2 style="color: #34d399; margin-top: 0;">Cuéntenos de su trabajo</h2>
+            <p style="color: #cbd5e1; font-size: 1rem; margin-bottom: 20px;">Escriba de forma sencilla qué vende, cuánto tiempo lleva y cómo es un día normal en su negocio.</p>
+            <textarea id="texto-narrativa" rows="5" class="caja-texto" placeholder="Ej. Llevo 20 años vendiendo gorditas y sopes afuera del metro. Mis clientes me pagan en efectivo y por WhatsApp..."></textarea>
+            <button onclick="procesarNarrativa()" class="boton">Validar mis Datos con la IA</button>
+        </div>
 
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-emerald-300 mb-1">Escriba aquí su experiencia:</label>
-                        <textarea id="texto-narrativa" rows="5" class="w-full bg-emerald-950/80 border border-emerald-700 rounded-xl p-3 text-slate-100 placeholder-emerald-700/60 focus:outline-none focus:border-emerald-400 font-sans text-lg resize-none" placeholder="Ej. Llevo 20 años vendiendo gorditas y sopes afuera del metro. Mis clientes me pagan en efectivo y por WhatsApp..."></textarea>
-                    </div>
-
-                    <button onclick="procesarNarrativa()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-extrabold py-3 px-6 rounded-xl transition-all text-lg shadow-md active:scale-[0.98]">
-                        Validar mis Datos con la IA
-                    </button>
-                </div>
-            </div>
-
-            <!-- VISTA 3: RESULTADO TARJETA JSON (IA SIMULADA) -->
-            <div id="vista-resultado" class="hidden space-y-6">
-                <div class="text-center space-y-1">
-                    <span class="text-4xl">✨</span>
-                    <h2 class="text-2xl font-bold text-emerald-400">¡Validación Exitosa!</h2>
-                    <p class="text-slate-300 text-sm">La Inteligencia Artificial estructuró su perfil de confianza:</p>
-                </div>
-
-                <!-- Bloque de código JSON estructurado -->
-                <div class="bg-emerald-950/90 rounded-xl p-4 border border-emerald-700 overflow-x-auto shadow-inner">
-                    <pre id="json-output" class="text-emerald-300 font-mono text-sm leading-relaxed"></pre>
-                </div>
-
-                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 text-center">
-                    <p class="text-emerald-400 font-bold text-base">✓ Perfil Técnico Generado Sin Evaluar Historial Crediticio</p>
-                </div>
-
-                <button onclick="regresarInicio()" class="w-full bg-transparent border border-emerald-700 hover:border-emerald-500 text-slate-300 py-3 rounded-xl transition-all text-sm font-medium">
-                    ← Volver a empezar
-                </button>
-            </div>
-
+        <!-- PANTALLA 3: RESULTADO -->
+        <div id="vista-resultado" class="oculto" style="text-align: center;">
+            <p style="font-size: 3rem; margin: 0;">✨</p>
+            <h2 style="color: #34d399; margin: 10px 0;">¡Validación Exitosa!</h2>
+            <p style="color: #cbd5e1; font-size: 1rem; margin-bottom: 15px;">La Inteligencia Artificial estructuró su perfil de confianza:</p>
+            <div class="bloque-json" id="json-output"></div>
+            <button onclick="regresarInicio()" class="boton" style="background: transparent; color: #cbd5e1; border: 1px solid #047857; margin-top: 20px;">← Volver al inicio</button>
         </div>
     </main>
 
-    <!-- FOOTER REQUERIDO POR SEGURIDAD -->
-    <footer class="text-center py-4 text-xs text-emerald-600 font-mono border-t border-emerald-900/60">
-        [Simulated AI Output - Security Floor 2026] · RLS: ON
+    <footer>
+        <p style="color: #047857; margin: 0;">[Simulated AI Output - Security Floor 2026] · RLS: ON</p>
     </footer>
 
-    <!-- INTERACCIONES EN JAVASCRIPT NATIVO -->
     <script>
         function entrarModoDemo() {
-            document.getElementById('vista-login').classList.add('hidden');
-            document.getElementById('vista-formulario').classList.remove('hidden');
+            document.getElementById('vista-login').classList.add('oculto');
+            document.getElementById('vista-formulario').classList.remove('oculto');
         }
 
         function procesarNarrativa() {
@@ -101,36 +118,31 @@
                 return;
             }
 
-            // Datos estructurados simulados basados estrictamente en la lectura del Elefante Dorado
             const resultadoIA = {
                 "perfil_confianza_tecnica": {
-                    "estabilidad_estimada": "Alta (20+ años en el mismo punto comercial)",
+                    "estabilidad_estimada": "Alta (20+ años en el punto comercial)",
                     "fuente_reputacional": "Validación Narrativa del Oficio",
                     "habilidades_detectadas": [
-                        "Gestión de suministros e insumos alimentarios",
-                        "Retención de clientes recurrentes en sector informal",
-                        "Administración de flujos de efectivo diarios"
+                        "Gestión de suministros e insumos",
+                        "Retención de clientes en sector informal",
+                        "Administración de flujos de efectivo"
                     ],
                     "analisis_inclusion": {
                         "excluye_codigo_postal": true,
-                        "excluye_historial_buro": true,
-                        "estatus_legal": "Comerciante Legítimo No Bancarizado"
-                    },
-                    "timestamp_verificacion": "2026-09-08T12:51:00Z"
+                        "excluye_historial_buro": true
+                    }
                 }
             };
 
-            // Mostrar el JSON formateado de nivel profesional
             document.getElementById('json-output').textContent = JSON.stringify(resultadoIA, null, 4);
-            
-            document.getElementById('vista-formulario').classList.add('hidden');
-            document.getElementById('vista-resultado').classList.remove('hidden');
+            document.getElementById('vista-formulario').classList.add('oculto');
+            document.getElementById('vista-resultado').classList.remove('oculto');
         }
 
         function regresarInicio() {
             document.getElementById('texto-narrativa').value = "";
-            document.getElementById('vista-resultado').classList.add('hidden');
-            document.getElementById('vista-login').classList.remove('hidden');
+            document.getElementById('vista-resultado').classList.add('oculto');
+            document.getElementById('vista-login').classList.remove('oculto');
         }
     </script>
 </body>
